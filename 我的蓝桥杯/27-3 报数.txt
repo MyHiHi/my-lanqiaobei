@@ -1,0 +1,26 @@
+//#include "header.h"	//AnycodeX includes the header.h by default, needn't cancle the notation.
+#include <iostream>
+#include <queue>
+using namespace std;
+
+int main()
+{
+    int n,m;
+    cin >> n>> m;
+    queue<int> per;
+    for (int x=0;x<n;x++)
+        per.push(x+1);
+    while (per.size()>1){
+        for (int x=0;x<m;x++){
+            if (x<m-1){
+                int y=per.front();
+                per.pop();
+                per.push(y);
+            }else{
+                per.pop();
+            }
+        }
+    }
+    cout << per.front() ;
+	return 0;
+}

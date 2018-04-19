@@ -1,0 +1,28 @@
+#include <iostream>
+#include <set>
+using namespace std;
+
+int main()
+{
+    
+   int num;
+   cin >> num;
+   int num1=num;
+   set<int> list;
+   for (int x=2;x<=num;){
+       if (num%x==0){
+           list.insert(x);
+           num/=x;
+       }
+            
+        else x++;
+   }
+   int count=num1;
+   for (set<int>::iterator p=list.begin();p!=list.end();p++){
+        int x=*p;
+        count=count-count/x;
+       
+   }
+   cout << count<<endl;
+   return 0;
+}

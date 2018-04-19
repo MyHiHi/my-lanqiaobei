@@ -1,0 +1,48 @@
+//#include "header.h"	//AnycodeX includes the header.h by default, needn't cancle the notation.
+#include <iostream>
+#include <queue>
+#include <string>
+using namespace std;
+
+bool isSev(int x){
+    if (x%7==0)
+        return true;
+    while (x){
+        if (x%10==7){
+            return true;
+        }
+        x/=10;
+    }
+    return false;
+}
+int main()
+{
+	int n,m,t;
+	cin >> n >> m >> t;
+	int count=0;
+	queue<string> list;
+	for (int x=0;x<n;x++){
+	    string name;
+	    cin >> name;
+	    list.push(name);
+	}
+	for (int x=0;x<m-1;x++){
+	    string name=list.front();
+	    list.pop();
+	    list.push(name);
+	}
+	count=t-1;
+	while (list.size()>1){
+	    count++;
+	    if (isSev(count))
+	        list.pop();
+	    else{
+	            string name=list.front();
+	            list.pop();
+	            list.push(name);
+	       }
+	       
+	}
+	cout << list.front()<<endl;
+	return 0;
+}

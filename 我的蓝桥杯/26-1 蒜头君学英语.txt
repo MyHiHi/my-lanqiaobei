@@ -1,0 +1,30 @@
+
+#include <iostream>
+#include <string.h>
+#include <string>
+#include <algorithm>
+#include <set>
+using namespace std;  
+main() 
+{ 
+ int n;
+ cin >> n;
+ set<string> myStr;
+ while(n--){
+ 	int x;
+ 	cin >> x;
+ 	string str;
+ 	cin >> str;
+ 	transform(str.begin(),str.end(),str.begin(),::tolower);
+ 	if (x==0){
+ 		myStr.insert(str);
+ 	}
+ 	else if (x==1){
+ 		if (myStr.count(str))
+ 			cout <<"Yes"<<endl;
+ 		else
+ 			cout <<"No"<<endl;
+ 	}
+ }
+return 0; 
+}

@@ -1,0 +1,47 @@
+#include <iostream>
+#include <stack>
+#include <string>
+using namespace std;
+int main() {
+    int n;
+    stack<string> back; // 后退
+    stack<string> now; //当前
+    stack<string> forward;//前进
+    cin >> n;
+    while (n--){
+        string way,web;
+        cin >> way;
+        if (way=="VISIT"){
+            cin >> web;
+            while (!forward.empty()) { forward.pop();}
+            if (!now.empty()){
+                 back.push(now.top());
+                now.pop();
+            }
+               
+            now.push(web);
+            cout << now.top()<<endl;
+        }
+        else if (way=="BACK"){
+            if (back.empty())
+                cout << "Ignore"<<endl;
+            else{
+                cout << back.top()<<endl;
+                forward.push(now.top());
+                now.pop();
+                now.push(back.top());
+                back.pop();
+            }
+        }else{
+            if (forward.empty())
+                cout <<"Ignore"<<endl;
+            else{
+                cout << forward.top()<<endl;
+                back.push(now.top());
+                now.pop();
+                now.push(forward.top());
+                forward.pop();
+            }
+        }
+    }
+}

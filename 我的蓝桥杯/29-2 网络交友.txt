@@ -1,0 +1,46 @@
+//#include "header.h"	//AnycodeX includes the header.h by default, needn't cancle the notation.
+#include <iostream>
+#include <map>
+#include <string>
+#include <vector>
+using namespace std;
+map<string,string> tree;
+map<string,int> size;
+
+string getRoot(string x){
+    if (tree[x]=="1"){
+        return x;
+    }
+    else{
+        return tree[x]=getRoot(tree[x]);
+    }
+}
+int main()
+{
+	int n;
+	cin >> n;
+	int m=n;
+	vector<string> veA,veB;
+	while (n--){
+	    string a,b;
+	    cin >> a>>b;
+	    tree[a]="1";
+	    tree[b]="1";
+	    size[a]=1;
+	    size[b]=1;
+	    veA.push_back(a);
+	    veB.push_back(b);
+	}
+	
+
+	for (int x=0;x<m;x++){
+	    string a=getRoot(veA[x]);
+	    string b=getRoot(veB[x]);
+	    if(a!=b){
+	        tree[b]=a;
+	        size[a]+=size[b];
+	    }
+	    cout<< size[a]<<endl;
+	}
+	return 0;
+}

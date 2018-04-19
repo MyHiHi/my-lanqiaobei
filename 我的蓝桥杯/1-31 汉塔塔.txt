@@ -1,0 +1,34 @@
+
+#include <iostream>
+using namespace std;
+
+
+//long long 大范围
+long long count(int t){
+    if (t==1)
+        return 1;
+    else{
+        return count(t-1)*2+1;
+    }  //a->c->b:一个count(n-1) ，a->c:第n个是1，b->a->c:又是一个count(n-1)
+}
+
+long long energy(int n){
+    if (n==1){
+        return 1;
+    }else{
+        return energy(n-1)*2+n; //这里加n
+    }
+}
+
+
+int main(){
+    
+    int n;
+    cin >> n;
+    cout << count(n)<<" "<<energy(n);
+    return 0;
+}
+
+
+
+

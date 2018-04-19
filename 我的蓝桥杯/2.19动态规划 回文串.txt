@@ -1,0 +1,20 @@
+#include <iostream>
+#include <algorithm>
+const int MAXLEN=3010;
+int main(){
+    std::string str1;
+    getline(std::cin,str1);
+    std::string str2=str1;
+    reverse(str2.begin(),str2.end());
+    int len1=str1.size(),len2=str2.size();
+    int dp[MAXLEN][MAXLEN]={0};
+    for (int x=1;x<=len1;x++)
+        for (int y=1;y<=len2;y++){
+            if (str1[x-1]==str2[y-1])
+                dp[x][y] = dp[x-1][y-1] + 1;
+            else
+                dp[x][y] = std::max(dp[x-1][y],dp[x][y-1]);
+        }
+    std::cout << len1 - dp[len1][len2] << std::endl;
+    return 0;
+}

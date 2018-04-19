@@ -1,0 +1,33 @@
+//#include "header.h"	//AnycodeX includes the header.h by default, needn't cancle the notation.
+#include <iostream>
+#include <string.h>
+#include <algorithm>
+#include <cmath>
+const int MAXLEN=4;
+int k[MAXLEN],p[MAXLEN];
+int n,m;
+int ans=0;
+using namespace std;
+
+void dfs(int tn,int sum){
+    if (tn==n){
+        if (sum==0){
+            ans++;
+        }
+        return ;
+    }
+    for (int x=1;x<=m;x++){
+        dfs(tn+1,sum+k[tn]*pow(x,p[tn]));
+    }
+}
+
+int main()
+{
+	cin >> n>>m;
+	for (int x=0;x<n;x++){
+	    cin >> k[x]>>p[x];
+	}
+	dfs(0,0);
+	cout <<ans;
+	return 0;
+}

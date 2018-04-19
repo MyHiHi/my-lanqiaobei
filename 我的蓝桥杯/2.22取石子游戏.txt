@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+long gcb(int a,int b){
+    return b==0?a:gcb(b,a%b);
+}
+int main(){
+    int n;
+    cin >> n;
+    while (n--){
+        long m,a,b;
+        cin >> m>>a>>b;
+        long num=gcb(a,b);
+        int count=0;
+        for (long num1=num;num1<=m;num1++){
+            if (num1%num==0)
+                count++;
+        }
+        if (count%2==0)
+            cout <<"suantou"<<endl;
+        else cout <<"huaye"<<endl;
+    }
+    return 0;
+}

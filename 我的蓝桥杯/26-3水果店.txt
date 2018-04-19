@@ -1,0 +1,22 @@
+#include <iostream>
+#include <map>
+using namespace std;
+main() 
+{ 
+	map<string,map<string,int>> plaList;
+	int n;
+	cin >> n;
+	while (n--){
+		string fruit,place;
+		int count;
+		cin >> fruit>>place >> count;
+		plaList[place][fruit]+=count;
+	}
+	for (map<string,map<string,int>>::iterator it=plaList.begin();it!=plaList.end();it++){
+		cout << it-> first<<endl;
+		for (map<string,int>::iterator ot=it->second.begin();ot!=it->second.end();ot++){
+			cout << "   |----"<< ot->first<<"("<<ot->second<<")"<<endl;
+		}
+	}
+return 0; 
+}

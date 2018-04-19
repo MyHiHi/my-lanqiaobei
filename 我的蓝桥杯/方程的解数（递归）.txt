@@ -1,0 +1,27 @@
+#include<iostream> 
+using namespace std;
+int ans=0,k[4],p[4],n,m;//ans标记解的个数
+int pow(int x,int y){//求x的y次方
+	int q=1;
+	for(int i=0;i<y;i++){
+		q*=x;
+	}
+	return q;
+}
+void dfs(int tn,int sum){//tn表示的是方程的项数，sum表示将未知数赋值后当前方程的值
+	if(tn==n){
+		if(sum==0) ans++;/*方程当前的项数等于输入的未知数个数n，并且方程的值是0，ans+1并返回*/
+		return;
+	}
+	for(int i=1;i<=m;i++)//枚举未知数所有可能值
+	dfs(tn+1,sum+k[tn]*pow(i,p[tn]));//方程增加一项，将未知数赋值，进入下一层递归
+}
+int main(){
+	cin>>n>>m;
+	for(int i=0;i<n;i++){//把系数k和幂p存到两个数组
+		cin>>k[i]>>p[i];
+	}
+	dfs(0,0);//进入dfs函数，进入时方程是0项的
+	cout<<ans;
+	return 0;
+}

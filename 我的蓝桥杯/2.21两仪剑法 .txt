@@ -1,0 +1,21 @@
+#include <iostream>
+#include <cstdio>
+using namespace std;
+
+long long gcb(long long x,long long y){
+    if (y==0)
+        return x;
+    return gcb(y,x%y);
+    
+}
+int main(){
+    int n;
+    cin >> n;
+    while (n--){
+        long long x,y;
+        cin >> x>>y;
+        cout << (x*y)/gcb(x,y)<<endl;
+        
+    }
+    return 0;
+}

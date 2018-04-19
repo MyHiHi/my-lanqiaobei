@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+int main()
+{
+    int n;
+    vector<int> a;
+    vector<int> b;
+    vector<int> ans;
+    cin >> n;
+    for(int x=0;x<n;x++){
+        int y;
+        cin >> y;
+        a.push_back(y);
+    }
+    for (int x=0;x<n;x++){
+        int y;
+        cin >> y;
+        b.push_back(y);
+    }
+    sort(a.begin(),a.end());
+    sort(b.begin(),b.end());
+    for (int x=0;x<n;x++)
+        for (int y=0;(x+1)*(y+1)<=n;y++){
+            ans.push_back(a[x]+b[y]);
+        }
+    sort(ans.begin(),ans.end());
+    for (int x=0;x<n;x++){
+	if(x==0)
+		cout << ans[x];
+	
+	else
+        	cout << " "<<ans[x];
+	}
+}

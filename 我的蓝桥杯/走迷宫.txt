@@ -1,0 +1,53 @@
+//走迷宫
+//作者：于洪运
+#include <iostream>
+#include <cstring>
+using namespace std;
+char _move[11][11];
+bool _move_v[11][11];
+int xx[4]={1,0,-1,0};
+int yy[4]={0,1,0,-1};
+int _count=0;
+int n,m;
+void dfs(int x,int y){
+    _move_v[x][y]=true;
+    if(_move[x][y]=='T'){
+        _count++;
+        return;
+    }
+    if(_move[x][y]=='#'){
+        return;
+    }
+    for(int i=0;i<4;i++){
+        x+=xx[i];
+        y+=yy[i];
+        if((x>-1&&x<n)&&(y>-1&&y<m)){
+            if(_move_v[x][y]==false){
+                _move_v[x][y]=true;
+                dfs(x,y);
+                _move_v[x][y]=false;
+            }
+        }
+        x-=xx[i];
+        y-=yy[i];
+    }
+}
+int main()
+{
+    cin>>n>>m;
+    memset(_move_v,false,sizeof(_move_v));
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++)
+            cin>>_move[i][j];
+    }
+    int x=0,y=0;
+    for(int i=0;i<n;i++)
+        for(int j=0;j<m;j++)
+            if(_move[i][j]=='S'){
+                x=i;
+                y=j;
+            }
+    dfs(x,y);
+    cout<<_count<<endl;
+    return 0;
+}

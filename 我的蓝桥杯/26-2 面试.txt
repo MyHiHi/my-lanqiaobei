@@ -1,0 +1,38 @@
+#include <iostream>
+#include <map>
+using namespace std;
+main() 
+{ 
+	int n;
+	cin >> n;
+	map<int,int> myMap;
+	while (n--){
+		int x;
+		cin >> x;
+		if (myMap.count(x)){
+			myMap[x]+=1;
+		}else{
+			myMap[x]=1;
+		}
+	}
+	int key=0,value=0;
+	int maxKey=0,maxValue=0;
+	for (map<int,int>::iterator it =myMap.begin();it!=myMap.end();it++){
+		key=it->first;
+		value=it->second;
+		if (maxValue<value){
+			maxKey=key;
+			maxValue=value;
+		}
+		else if (maxValue==value){
+			if (maxKey<key){
+				maxKey=key;
+				maxValue=value;	
+			}
+				
+		}
+	}
+	cout << maxKey << " "<< maxValue;
+	
+return 0; 
+}

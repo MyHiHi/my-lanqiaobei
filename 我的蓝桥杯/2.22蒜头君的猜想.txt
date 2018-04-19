@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+const int MAXLEN=8e6+1;
+int main(){
+    int n;
+    cin >> n;
+    int is_prime[MAXLEN];
+    for (int x=2;x<=n;x++){
+        is_prime[x]=1;
+    }
+    for (int x=2;x*x<=n;x++){
+        if (is_prime[x]){
+            for (int y=x*x;y<=n;y+=x)
+                is_prime[y]=0;
+        }
+    }
+    int count=0;
+    for (int x=2;x<=n/2;x++){
+        if (is_prime[x]&& is_prime[n-x])
+            count++;
+    }
+   cout<<count;
+    return 0;
+}

@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string.h>
+using namespace std;
+char map[11][11];
+int vis[11][11];
+int dir[4][2]={{1,0},{0,1},{-1,0},{0,-1}};
+int count=0;
+int n,m;
+void dfs(int a,int b){  //Éî¶ÈËÑË÷
+    vis[a][b]=1;
+    if (map[a][b]=='T'){
+        count++;
+    }else{
+        for (int t=0;t<4;t++){
+            int tx=a+dir[t][0];
+            int ty=b+dir[t][1];
+            if (tx<0 || ty<0 || tx>=n || ty>=m){
+                continue;
+            }else{
+                if (vis[tx][ty]==0 && map[tx][ty]!='#'){
+                    dfs(tx,ty);
+                }
+            }
+        }
+    }
+    vis[a][b]=0;
+}
+
+int main(){
+    
+    cin >> n>>m;
+    for (int t=0;t<n;t++){
+        cin >> map[t];
+    }
+    int a,b;
+    for (int x=0;x<n;x++)
+        for (int y=0;y<m;y++){
+            if (map[x][y]=='S'){
+                a=x;
+                b=y;
+                break;
+            }
+        }
+        
+    memset(vis,0,sizeof(vis));
+    dfs(a,b);
+    cout <<count;
+}

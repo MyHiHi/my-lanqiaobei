@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+#define LL long long
+const LL MOD=1e9+7;
+LL pow(LL a,LL b){
+    LL ans=1;
+    while (b){
+        if (b&1) ans=ans*a%MOD;
+        a=a*a%MOD;
+        b>>=1;
+    }
+    return ans;
+}
+
+int main(){
+    LL a,b;
+    cin>> a>>b;
+    LL ans=pow(b,a)%MOD-b*pow(b-1,a-1)%MOD;
+    ans%=MOD;
+    ans=ans>0?ans:ans+MOD;
+    cout <<ans<<endl;
+    return 0;
+}

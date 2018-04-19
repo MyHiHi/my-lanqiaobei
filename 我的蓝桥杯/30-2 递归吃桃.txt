@@ -1,0 +1,16 @@
+//#include "header.h"	//AnycodeX includes the header.h by default, needn't cancle the notation.
+#include <iostream>
+using namespace std;
+long getNum(int n,long sum){
+    if (n==1)
+       return sum;
+    return getNum(n-1,(sum+1)*2);  //longÐÍ
+    
+}
+int main()
+{
+	int  n;
+	cin >>n;
+	cout << getNum(n,1);
+	return 0;
+}

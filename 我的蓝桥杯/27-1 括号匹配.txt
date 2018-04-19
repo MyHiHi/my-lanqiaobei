@@ -1,0 +1,49 @@
+#include <iostream>
+#include <string>
+#include <stack>
+using namespace std;
+const int MAXLEN=50050;
+void myGPS(string str){
+	int myGPS[MAXLEN];
+	int gps=0;
+	for(int x=0;x<str.size();x++){
+	char ch=str[x];
+	if (ch=='(')
+		myGPS[++gps]=x;
+	else{
+	
+
+		cout << myGPS[gps--]+1<<" "<<x+1<<endl;
+	}
+	}
+}
+int main() {
+	string str;
+	cin >>str;
+	stack<char> myStack;
+	for (int x=0;x<str.size();x++){
+		char ch=str[x];
+		if (ch=='('){
+			myStack.push(ch);
+		}
+		else{
+	
+		
+		if (  myStack.empty() || myStack.top()!='('){
+				cout <<"No";
+				return 0;
+		}
+		myStack.pop();
+		
+
+		}
+	}
+	if (myStack.empty()){
+		cout <<"Yes"<<endl;
+		myGPS(str);
+	}
+	else{
+		cout <<"No";
+	}
+	return 0;
+}
